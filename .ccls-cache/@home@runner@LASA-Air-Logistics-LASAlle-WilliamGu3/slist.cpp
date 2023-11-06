@@ -1,5 +1,6 @@
 #include "slist.h"
-
+#include <string>
+using namespace std;
 /*
 Class Library File
 */
