@@ -173,39 +173,23 @@ double distanceEarth(double lat1d, double lon1d, double lat2d, double lon2d) {
 /*
         Provide sort routine on linked list
 */
-
 void simpleSortTotal(Airport *head) {
-  
-  Airport *curr = head->next;
-  double distcurr = 0;
-
-
+  Airport *curr = head;
   while (curr->next != NULL) {
+    Airport *real = curr;
     Airport *second = curr->next;
-    double distsec =
-        distanceEarth(30.1944, -97.6700, second->latitude, -1 * second->longitude);
-    double distcurr = distanceEarth(30.1944, -97.6700, curr->latitude,
-                                    -1 * curr->longitude);
-    if (distcurr < distsec) {
-      // Airport *temp = second;
-      // second->latitude = curr->latitude;
-      // second->longitude = curr->longitude;
-      // curr->latitude = temp->latitude;
-      // curr->longitude = temp->latitude;
-      // second->next = curr->next;
-      // curr->next = temp->next;
-      // swap(curr->latitude, second->latitude);
-      // swap(curr->longitude, second->longitude);
-      // swap(curr->next, second->next);
-      Airport *temp = curr;
-      curr->next = second;  
-      second->next = temp;
-
-
+    while (second->next != NULL) {
+      double distsec =
+          distanceEarth(30.1944, -97.6700, second->latitude, -1 * second->longitude);
+      double distcurr = distanceEarth(30.1944, -97.6700, real->latitude,
+                                      -1 * real->longitude);
+      if (distcurr < distsec) {
+        swap(real->code, second->code);
+        swap(real->latitude, second->latitude);
+        swap(real->longitude, second->longitude);
+      }
+      second = second->next;
     }
-    else{
-      curr = curr->next;
-    }
-
+    curr = curr->next;
   }
 }

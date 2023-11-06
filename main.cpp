@@ -173,46 +173,23 @@ double distanceEarth(double lat1d, double lon1d, double lat2d, double lon2d) {
 /*
         Provide sort routine on linked list
 */
-
 void simpleSortTotal(Airport *head) {
-  
   Airport *curr = head;
   while (curr->next != NULL) {
     Airport *real = curr;
     Airport *second = curr->next;
-    while(second->next != NULL){
+    while (second->next != NULL) {
       double distsec =
           distanceEarth(30.1944, -97.6700, second->latitude, -1 * second->longitude);
       double distcurr = distanceEarth(30.1944, -97.6700, real->latitude,
                                       -1 * real->longitude);
       if (distcurr < distsec) {
-        // Airport *temp = second;
-        // second->latitude = curr->latitude;
-        // second->longitude = curr->longitude;
-        // curr->latitude = temp->latitude;
-        // curr->longitude = temp->latitude;
-        // second->next = curr->next;
-        // curr->next = temp->next;
-        // swap(curr->latitude, second->latitude);
-        // swap(curr->longitude, second->longitude);
-        // swap(curr->next, second->next);
-        real = second;
-
-
-
+        swap(real->code, second->code);
+        swap(real->latitude, second->latitude);
+        swap(real->longitude, second->longitude);
       }
       second = second->next;
     }
-    
-    double num1 = curr->latitude;
-    double num2 = curr->longitude;
-    curr->latitude = real->latitude;
-    curr->longitude = real->longitude;
-    real->latitude = num1;
-    real->longitude = num2;
     curr = curr->next;
-
-
   }
-  
 }
